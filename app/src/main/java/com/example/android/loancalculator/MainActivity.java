@@ -30,45 +30,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
         protected void onCreate (Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            cost = findViewById(R.id.view1);
-            down = findViewById(R.id.view2);
-            Bar = findViewById(R.id.lengthBar);
-            apr = findViewById(R.id.inputAPR)
-            ;
-            inputCost = findViewById(R.id.inputCost);
-            inputDown = findViewById(R.id.inputDown);
-            inputAPR = findViewById(R.id.inputAPR)
-            ;
-            length = findViewById(R.id.viewProg);
-            lease = findViewById(R.id.lease);
-            loan = findViewById(R.id.loan);
-            out = findViewById(R.id.monthOut);
-            listenRadio = new RadioListener();
-            type = findViewById(R.id.radGroup);
-            type.setOnCheckedChangeListener(listenRadio);
-        Bar.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        int progress = Bar.getProgress();
-                        length.setText(progress+" month plan");
-                        setMonthlyLoan();
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
-                }
-        );
+        cost = findViewById(R.id.view1);
+        down = findViewById(R.id.view2);
+        Bar = findViewById(R.id.lengthBar);
+        apr = findViewById(R.id.inputAPR)
+        ;
+        inputCost = findViewById(R.id.inputCost);
+        inputDown = findViewById(R.id.inputDown);
+        inputAPR = findViewById(R.id.inputAPR)
+        ;
+        length = findViewById(R.id.viewProg);
+        lease = findViewById(R.id.lease);
+        loan = findViewById(R.id.loan);
+        out = findViewById(R.id.monthOut);
+        listenRadio = new RadioListener();
+        type = findViewById(R.id.radGroup);
+        type.setOnCheckedChangeListener(listenRadio);
 
         apr.setOnEditorActionListener(
                 new TextView.OnEditorActionListener() {
@@ -86,7 +66,67 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        Bar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        int progress = Bar.getProgress();
+                        length.setText(progress + " month plan");
+                        setMonthlyLoan();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                }
+        );
+
+        if (savedInstanceState != null) {
+            if(lease.isChecked()) {
+                cost.setText(savedInstanceState.getString("COST"));
+                down.setText(savedInstanceState.getString("DOWN"));
+                apr.setText(savedInstanceState.getString("APR"));
+                out.setText(savedInstanceState.getString("OUT"));
+                lease.setChecked(savedInstanceState.getBoolean("LEASE"));
+            }
+            else
+                cost.setText(savedInstanceState.getString("COST"));
+                down.setText(savedInstanceState.getString("DOWN"));
+                apr.setText(savedInstanceState.getString("APR"));
+                out.setText(savedInstanceState.getString("OUT"));
+                loan.setChecked(savedInstanceState.getBoolean("LOAN"));
+        }
     }
+
+        public void onSaveInstanceState(Bundle savedInstanceState) {
+        if(loan.isChecked()) {
+            super.onSaveInstanceState(savedInstanceState);
+            savedInstanceState.putString("COST", cost.getText().toString());
+            savedInstanceState.putString("DOWN", down.getText().toString());
+            savedInstanceState.putString("APR", apr.getText().toString());
+            savedInstanceState.putBoolean("LOAN", loan.isChecked());
+            savedInstanceState.putString("OUT", out.getText().toString());
+        }
+        else{
+            super.onSaveInstanceState(savedInstanceState);
+            savedInstanceState.putString("COST", cost.getText().toString());
+            savedInstanceState.putString("DOWN", down.getText().toString());
+            savedInstanceState.putString("APR", apr.getText().toString());
+            savedInstanceState.putBoolean("LEASE", lease.isChecked());
+            savedInstanceState.putString("OUT", out.getText().toString());
+        }
+
+
+    }
+
+
+
 
 
 
@@ -104,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
         }
+
     }
 
         private void setMonthlyLoan(){
@@ -125,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             double L = Double.parseDouble(c);
             String d = inputDown.getText().toString();
             double down = Double.parseDouble(d);
+            L=L-down;
             String a = inputAPR.getText().toString();
             double apr = Double.parseDouble(a);
             double mr = (apr/100)/12;

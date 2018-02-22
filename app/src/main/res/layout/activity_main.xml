@@ -8,35 +8,34 @@
 
     <LinearLayout
         android:id="@+id/cost"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/view1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/CarCost"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
-        />
+            android:text="@string/CarCost"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/inputCost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="5"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="100dp"
-            />
+            android:ems="5"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/down"
-        android:layout_below="@id/cost"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cost"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/view2"
@@ -45,101 +44,95 @@
             android:layout_marginLeft="20dp"
             android:gravity="left"
             android:text="@string/DownPayment"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/inputDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="5"
             android:layout_marginRight="100dp"
-            />
+            android:ems="5"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/apr"
-        android:layout_below="@id/down"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/down"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/view3"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:gravity="left"
             android:text="@string/APR"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/inputAPR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:layout_marginRight="100dp"
             android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:ems="5"
-            />
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/pic"
-        android:layout_toRightOf="@id/radGroup"
-        android:layout_below="@id/apr"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apr"
+        android:layout_toRightOf="@id/radGroup"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/car"
-          />
+            android:src="@drawable/car" />
     </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radGroup"
-        android:checkedButton="@id/loan"
-        android:layout_below="@id/apr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp">
+        android:layout_below="@id/apr"
+        android:layout_marginHorizontal="50dp"
+        android:checkedButton="@id/loan">
 
         <RadioButton
 
             android:id="@+id/loan"
-            android:text="@string/loan"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/loan" />
 
         <RadioButton
             android:id="@+id/lease"
-            android:text="@string/lease"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/lease" />
     </RadioGroup>
 
 
     <LinearLayout
         android:id="@+id/bar"
-       android:layout_below="@id/pic"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pic"
+        android:orientation="horizontal">
 
         <SeekBar
             android:id="@+id/lengthBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="60"
-            android:progress="36"
             android:layout_gravity="center"
-            />
+            android:max="60"
+            android:progress="36" />
 
     </LinearLayout>
 
@@ -147,52 +140,51 @@
         android:id="@+id/prog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_above="@id/bar">
+        android:layout_above="@id/bar"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/viewProg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
             android:layout_marginLeft="20dp"
             android:text="36 month plan"
-            />
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/Monthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/bar">
+        android:layout_below="@id/bar"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/viewMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="25dp"
-
             android:text="@string/monthly"
-            />
+
+            android:textSize="25dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/Month"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bar"
+        android:layout_below="@id/Monthly"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="50dp"
-        android:layout_toRightOf="@id/Monthly"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/monthOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+
             android:layout_marginLeft="50dp"
             android:layout_marginRight="30dp"
             android:textSize="40dp" />

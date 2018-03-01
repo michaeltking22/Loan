@@ -1,8 +1,7 @@
 package com.example.android.loancalculator;
 
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -10,7 +9,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 public class MainActivity extends AppCompatActivity {
 
     private TextView cost;
@@ -66,26 +64,29 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        Bar.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        int progress = Bar.getProgress();
-                        length.setText(progress + " month plan");
-                        setMonthlyLoan();
+            Bar.setOnSeekBarChangeListener(
+                    new SeekBar.OnSeekBarChangeListener() {
+                        @Override
+                        public void onProgressChanged(SeekBar seekBar, int i, boolean b)
+                        {
+                            if(loan.isChecked()) {
+                                int progress = Bar.getProgress();
+                                length.setText(progress + " month plan");
+                                setMonthlyLoan();
+                            }
+                        }
+
+                        @Override
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+
+                        }
+
+                        @Override
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+
+                        }
                     }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
-                }
-        );
+            );
 
         if (savedInstanceState != null) {
             if(lease.isChecked()) {
@@ -164,13 +165,13 @@ public class MainActivity extends AppCompatActivity {
         private void setMonthlyLease(){
             String c = inputCost.getText().toString();
             double L = Double.parseDouble(c);
+            L = L/3;
             String d = inputDown.getText().toString();
             double down = Double.parseDouble(d);
             L=L-down;
             String a = inputAPR.getText().toString();
             double apr = Double.parseDouble(a);
             double mr = (apr/100)/12;
-            L = L/3;
             double P = (mr*L)/(1-(Math.pow(1+mr, -36)));
             out.setText("$" +String.format("%.2f", P));
         }

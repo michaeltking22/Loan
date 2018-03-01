@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:max="60"
+            android:min="1"
             android:progress="36" />
 
     </LinearLayout>
